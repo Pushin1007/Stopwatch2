@@ -5,24 +5,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import by.kirich1409.viewbindingdelegate.viewBinding
+
+import com.pd.stopwatch.R
 import com.pd.stopwatch.databinding.FragmentMainBinding
+import com.pd.stopwatch.model.StopwatchListOrchestrator
 import com.pd.stopwatch.viewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.named
 
 class MainFragment : Fragment() {
-    private val binding: FragmentMainBinding by viewBinding()
-    private val viewModel: MainViewModel by viewModel()
+    //private val binding: FragmentMainBinding by viewBinding()
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+    val viewModel: MainViewModel by viewModel()
+
     private var stopwatchListOrchestrator: StopwatchListOrchestrator? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

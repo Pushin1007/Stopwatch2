@@ -1,5 +1,7 @@
 package com.pd.stopwatch.di
 
+import com.pd.stopwatch.model.*
+import com.pd.stopwatch.viewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
