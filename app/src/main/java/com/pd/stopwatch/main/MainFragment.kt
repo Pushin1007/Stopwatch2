@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.pd.stopwatch.MAIN_VIEW_MODEL
+import com.pd.stopwatch.STOPWATCH_LIST_ORCHESTRATOR
 
-import com.pd.stopwatch.R
 import com.pd.stopwatch.databinding.FragmentMainBinding
 import com.pd.stopwatch.model.StopwatchListOrchestrator
 import com.pd.stopwatch.viewmodel.MainViewModel
@@ -17,11 +18,12 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
+
 class MainFragment : Fragment() {
-    //private val binding: FragmentMainBinding by viewBinding()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-    val viewModel: MainViewModel by viewModel()
+
+    val viewModel: MainViewModel by viewModel(named(MAIN_VIEW_MODEL))
 
     private var stopwatchListOrchestrator: StopwatchListOrchestrator? = null
 
@@ -29,7 +31,9 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+
+        _binding = FragmentMainBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
